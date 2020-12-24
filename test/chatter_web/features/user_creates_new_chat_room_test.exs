@@ -2,14 +2,18 @@ defmodule ChatterWeb.Test.Features.UserCreatesNewChatRoomTest do
   use ChatterWeb.FeatureCase, async: true
 
   test "user creates a new chatroom successfully", %{session: session} do
+    user =
+      build(:user)
+      |> set_password("superpass")
+      |> insert()
+
     session
-    |> visit(rooms_index())
+    |> visit("/")
+    |> sign_in(as: user)
     |> click(new_chat_link())
     |> create_chat_room(name: "elixir")
     |> assert_has(room_title("elixir"))
   end
-
-  defp rooms_index, do: Routes.chat_room_path(@endpoint, :index)
 
   defp new_chat_link, do: Query.link("New chat room")
 
