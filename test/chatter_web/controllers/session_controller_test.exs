@@ -3,10 +3,7 @@ defmodule ChatterWeb.Test.Controllers.SessionControllerTest do
 
   describe "create/2" do
     test "renders error when email/password combination is invalid", %{conn: conn} do
-      user =
-        build(:user)
-        |> set_password("superpass")
-        |> insert()
+      user = insert(:user)
 
       response =
         conn
