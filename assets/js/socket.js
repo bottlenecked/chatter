@@ -11,7 +11,9 @@ import {
 } from "phoenix"
 
 let socket = new Socket("/socket", {
-  params: {}
+  params: {
+    email: window.email
+  }
 })
 
 // When you connect, you'll often need to authenticate the client.

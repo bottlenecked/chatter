@@ -6,7 +6,9 @@ defmodule ChatterWeb.ChatRoomChannel do
   end
 
   def handle_in("new_message", payload, socket) do
-    broadcast(socket, "new_message", payload)
+    author = socket.assigns.email
+    final_payload = Map.put(payload, "author", author)
+    broadcast(socket, "new_message", final_payload)
     {:noreply, socket}
   end
 end
