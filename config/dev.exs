@@ -2,8 +2,7 @@ use Mix.Config
 
 # Configure your database
 config :chatter, Chatter.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: System.fetch_env!("LOGNAME"),
   database: "chatter_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
